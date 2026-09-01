@@ -1,4 +1,22 @@
 @baseUrl = http://localhost:3000
 
-### Get root endpoint
+### GET root endpoint
 GET {{baseUrl}}/
+
+### GET posts
+GET {{baseUrl}}/posts
+
+### GET single post by ID
+GET {{baseUrl}}/posts/1
+
+### POST create new post
+POST {{baseUrl}}/posts
+
+### PUT update post by ID
+PUT {{baseUrl}}/posts/1
+
+### DELETE post by ID
+DELETE {{baseUrl}}/posts/1
+
+### 404
+GET {{baseUrl}}/non-existent
