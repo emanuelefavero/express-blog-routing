@@ -1,4 +1,4 @@
-const POSTS = Object.freeze([
+const posts = [
   {
     id: 1,
     title: 'Ciambellone della domenica',
@@ -34,29 +34,30 @@ const POSTS = Object.freeze([
     image: '/images/torta_paesana.jpeg',
     tags: ['dolci', 'torta', 'tradizione'],
   },
-]);
+];
 
 // Get all posts
-export const getAllPosts = (posts = POSTS) => {
-  return posts;
+export const getAllPosts = (data = posts) => {
+  return data;
 };
 
 // Get post by ID
-export const getSinglePostById = (id, posts = POSTS) => {
-  return posts.find((post) => post.id === id);
+export const getSinglePostById = (id, data = posts) => {
+  const parsedId = parseInt(id, 10);
+  return data.find((post) => post.id === parsedId);
 };
 
 // Filter by tag
-export const getPostsByTag = (tag, posts = POSTS) => {
-  return posts.filter((post) =>
+export const getPostsByTag = (tag, data = posts) => {
+  return data.filter((post) =>
     post.tags.some((t) => t.toLowerCase() === tag.toLowerCase()),
   );
 };
 
 // Search by title or content
-export const searchPosts = (query, posts = POSTS) => {
+export const searchPosts = (query, data = posts) => {
   const lowerQuery = query.toLowerCase();
-  return posts.filter(
+  return data.filter(
     (post) =>
       post.title.toLowerCase().includes(lowerQuery) ||
       post.content.toLowerCase().includes(lowerQuery),
@@ -64,8 +65,8 @@ export const searchPosts = (query, posts = POSTS) => {
 };
 
 // Sort by title
-export const sortPostsByTitle = (order = 'asc', posts = POSTS) => {
-  return posts.toSorted((a, b) => {
+export const sortPostsByTitle = (order = 'asc', data = posts) => {
+  return data.toSorted((a, b) => {
     if (order === 'asc') {
       return a.title.localeCompare(b.title);
     } else {
@@ -75,8 +76,8 @@ export const sortPostsByTitle = (order = 'asc', posts = POSTS) => {
 };
 
 // Sort by id
-export const sortPostsById = (order = 'asc', posts = POSTS) => {
-  return posts.toSorted((a, b) => {
+export const sortPostsById = (order = 'asc', data = posts) => {
+  return data.toSorted((a, b) => {
     if (order === 'asc') {
       return a.id - b.id;
     } else {
