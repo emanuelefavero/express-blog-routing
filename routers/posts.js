@@ -1,14 +1,18 @@
 import { Router } from 'express';
+import { getAllPosts, getSinglePostById } from '../data/posts.js';
 
 export const postsRouter = Router();
 
 postsRouter.get('/', (_, res) => {
-  res.send('Lista dei posts');
+  const posts = getAllPosts();
+  res.json(posts);
 });
 
 postsRouter.get('/:id', (req, res) => {
   const { id } = req.params;
-  res.send(`Dettaglio del post con id: ${id}`);
+
+  const post = getSinglePostById(id);
+  res.json(post);
 });
 
 postsRouter.post('/', (req, res) => {
