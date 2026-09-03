@@ -1,4 +1,3 @@
-import { Router } from 'express';
 import {
   createPost,
   deletePost,
@@ -7,10 +6,7 @@ import {
   updatePost,
 } from '../controllers/posts.js';
 
-export const postsRouter = Router();
-
-postsRouter.get('/', getPosts);
-postsRouter.get('/:id', getPostById);
-postsRouter.post('/', createPost);
-postsRouter.put('/:id', updatePost);
-postsRouter.delete('/:id', deletePost);
+export const registerPosts = (app) => {
+  app.route('/posts').get(getPosts).post(createPost);
+  app.route('/posts/:id').get(getPostById).put(updatePost).delete(deletePost);
+};

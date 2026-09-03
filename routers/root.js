@@ -1,6 +1,5 @@
-import { Router } from 'express';
 import { getRoot } from '../controllers/root.js';
 
-export const rootRouter = Router();
-
-rootRouter.get('/', getRoot);
+export const registerRoot = (app) => {
+  app.get('/', getRoot);
+};
