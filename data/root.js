@@ -1,10 +1,10 @@
-import { getAllPosts } from './posts.js';
+import { getPostsLength } from './posts.js';
 
-const totalPosts = getAllPosts().length;
+const TOTAL_POSTS = getPostsLength();
 
 export const apiEndpoints = {
   posts: {
-    totalCount: totalPosts,
+    totalCount: TOTAL_POSTS,
     endpoints: [
       {
         method: 'GET',

@@ -36,6 +36,11 @@ const posts = [
   },
 ];
 
+// Get posts length
+export const getPostsLength = (data = posts) => {
+  return data.length;
+};
+
 // Get all posts
 export const getAllPosts = (data = posts) => {
   return data;
@@ -43,7 +48,7 @@ export const getAllPosts = (data = posts) => {
 
 // Get post by ID
 export const getSinglePostById = (id, data = posts) => {
-  const parsedId = parseInt(id, 10);
+  const parsedId = Number(id);
   return data.find((post) => post.id === parsedId);
 };
 
