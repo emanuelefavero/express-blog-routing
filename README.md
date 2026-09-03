@@ -1,6 +1,6 @@
 # Express Blog Intro
 
-An Express.js application with routing from my web dev course.
+An Express.js blog application with routing from my web dev course.
 
 <img src="logo.svg" alt="Node.js logo" width="100">
 
@@ -18,6 +18,11 @@ An Express.js application with routing from my web dev course.
 - Open your browser and go to `http://localhost:3000` to see the app running.
 
 > To run the project in dev mode, use `npm run dev`.
+
+## API documentation
+
+See the complete [API reference](docs/API.md) for the available endpoints, query
+parameters, responses, and errors.
 
 ## Test the routes
 
