@@ -1,7 +1,7 @@
 const ALLOWED_SORT_FIELDS = ['id', 'title'];
 const ALLOWED_SORT_ORDERS = ['asc', 'desc'];
 
-export const validatePostQuery = ({ tag, search, sortBy, order }) => {
+export const validatePostQuery = ({ tag, search, sortBy, order, _limit }) => {
   if (tag && (typeof tag !== 'string' || !tag.trim())) {
     return 'Il parametro tag deve essere una stringa non vuota';
   }
@@ -20,6 +20,18 @@ export const validatePostQuery = ({ tag, search, sortBy, order }) => {
 
   if (order && !ALLOWED_SORT_ORDERS.includes(order)) {
     return `Campo order non valido. I valori consentiti sono: ${ALLOWED_SORT_ORDERS.join(', ')}`;
+  }
+
+  if (_limit) {
+    if (typeof _limit !== 'string') {
+      return 'Il parametro _limit deve avere un solo valore';
+    }
+
+    const limit = Number(_limit);
+
+    if (!Number.isInteger(limit) || limit <= 0) {
+      return 'Il parametro _limit deve essere un numero intero positivo';
+    }
   }
 
   return null;

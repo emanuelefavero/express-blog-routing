@@ -9,9 +9,15 @@ import {
 import { validatePostId, validatePostQuery } from '../validation/posts.js';
 
 export const getPosts = (req, res) => {
-  const { tag, search, sortBy, order } = req.query;
+  const { tag, search, sortBy, order, _limit } = req.query;
 
-  const validationError = validatePostQuery({ tag, search, sortBy, order });
+  const validationError = validatePostQuery({
+    tag,
+    search,
+    sortBy,
+    order,
+    _limit,
+  });
   if (validationError)
     return res.status(400).json({ message: validationError });
 
@@ -21,6 +27,7 @@ export const getPosts = (req, res) => {
   if (search) posts = searchPosts(search, posts);
   if (sortBy === 'id') posts = sortPostsById(order, posts);
   if (sortBy === 'title') posts = sortPostsByTitle(order, posts);
+  if (_limit) posts = posts.slice(0, Number(_limit));
 
   return res.json(posts);
 };
