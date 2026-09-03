@@ -6,8 +6,20 @@ GET {{baseUrl}}/
 ### GET posts
 GET {{baseUrl}}/posts
 
+### GET posts filtered, searched and sorted
+GET {{baseUrl}}/posts?tag=dolci&search=torta&sortBy=title&order=desc
+
+### 400 - Invalid sort field
+GET {{baseUrl}}/posts?sortBy=date
+
 ### GET single post by ID
 GET {{baseUrl}}/posts/1
+
+### 400 - Invalid post ID
+GET {{baseUrl}}/posts/abc
+
+### 404 - Post not found
+GET {{baseUrl}}/posts/999
 
 ### POST create new post
 POST {{baseUrl}}/posts

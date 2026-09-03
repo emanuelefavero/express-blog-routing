@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "6cda799e-289d-45c8-b871-2e7650eb19eb",
+    "_postman_id": "ea4f5c35-26e9-4dae-8bc3-f5a4ba6df3c6",
     "name": "express-blog-routing",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "13059883",
-    "_collection_link": "https://go.postman.co/collection/13059883-6cda799e-289d-45c8-b871-2e7650eb19eb?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/13059883-ea4f5c35-26e9-4dae-8bc3-f5a4ba6df3c6?source=collection_link"
   },
   "item": [
     {
@@ -46,6 +46,100 @@
               ],
               "path": [
                 "posts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "posts - filtered, searched and sorted",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/posts?tag=dolci&search=torta&sortBy=title&order=desc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "tag",
+                  "value": "dolci"
+                },
+                {
+                  "key": "search",
+                  "value": "torta"
+                },
+                {
+                  "key": "sortBy",
+                  "value": "title"
+                },
+                {
+                  "key": "order",
+                  "value": "desc"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "posts - invalid sortBy (400)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/posts?sortBy=date",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "sortBy",
+                  "value": "date"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "posts/:id - invalid ID (400)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/posts/abc",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts",
+                "abc"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "posts/:id - not found (404)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/posts/999",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts",
+                "999"
               ]
             }
           },
