@@ -1,5 +1,5 @@
-import { Post } from '../data/posts.js';
-import { validatePostId, validatePostQuery } from '../validation/posts.js';
+import { Post } from '#/data/posts.js';
+import { validatePostId, validatePostQuery } from '#/validation/posts.js';
 
 export const index = (req, res) => {
   const { tag, search, sortBy, order, _limit } = req.query;

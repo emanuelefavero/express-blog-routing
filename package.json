@@ -11,6 +11,9 @@
   "author": "Emanuele Favero <emafaux89@gmail.com> (https://emanuelefavero.com/)",
   "license": "MIT",
   "type": "module",
+  "imports": {
+    "#/*": "./*"
+  },
   "dependencies": {
     "express": "^5.2.1"
   },
