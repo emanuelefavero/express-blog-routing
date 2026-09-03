@@ -1,14 +1,7 @@
-import {
-  getAllPosts,
-  getPostsByTag,
-  getSinglePostById,
-  searchPosts,
-  sortPostsById,
-  sortPostsByTitle,
-} from '../data/posts.js';
+import { Post } from '../data/posts.js';
 import { validatePostId, validatePostQuery } from '../validation/posts.js';
 
-export const getPosts = (req, res) => {
+export const index = (req, res) => {
   const { tag, search, sortBy, order, _limit } = req.query;
 
   const validationError = validatePostQuery({
@@ -21,41 +14,41 @@ export const getPosts = (req, res) => {
   if (validationError)
     return res.status(400).json({ message: validationError });
 
-  let posts = getAllPosts();
+  let posts = Post.findAll();
 
-  if (tag) posts = getPostsByTag(tag, posts);
-  if (search) posts = searchPosts(search, posts);
-  if (sortBy === 'id') posts = sortPostsById(order, posts);
-  if (sortBy === 'title') posts = sortPostsByTitle(order, posts);
+  if (tag) posts = Post.filterByTag(tag, posts);
+  if (search) posts = Post.search(search, posts);
+  if (sortBy === 'id') posts = Post.sortById(order, posts);
+  if (sortBy === 'title') posts = Post.sortByTitle(order, posts);
   if (_limit) posts = posts.slice(0, Number(_limit));
 
   return res.json(posts);
 };
 
-export const getPostById = (req, res) => {
+export const show = (req, res) => {
   const id = Number(req.params.id);
 
   const idValidationError = validatePostId(id);
   if (idValidationError)
     return res.status(400).json({ message: idValidationError });
 
-  const post = getSinglePostById(id);
+  const post = Post.findById(id);
 
   if (!post) return res.status(404).json({ message: 'Post non trovato' });
 
   return res.json(post);
 };
 
-export const createPost = (req, res) => {
+export const create = (req, res) => {
   res.send('TODO: Creazione di un nuovo post');
 };
 
-export const updatePost = (req, res) => {
+export const update = (req, res) => {
   const { id } = req.params;
   res.send(`TODO: Aggiornamento del post con id: ${id}`);
 };
 
-export const deletePost = (req, res) => {
+export const destroy = (req, res) => {
   const { id } = req.params;
   res.send(`TODO: Eliminazione del post con id: ${id}`);
 };

@@ -1,5 +1,5 @@
-import { getRoot } from '../controllers/root.js';
+import { index } from '../controllers/root.js';
 
 export const registerRoot = (app) => {
-  app.get('/', getRoot);
+  app.get('/', index);
 };

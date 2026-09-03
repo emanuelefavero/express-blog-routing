@@ -36,57 +36,61 @@ const posts = [
   },
 ];
 
-// Get posts length
-export const getPostsLength = (data = posts) => {
-  return data.length;
-};
+export const Post = {
+  // Get posts length
+  count(data = posts) {
+    return data.length;
+  },
 
-// Get all posts
-export const getAllPosts = (data = posts) => {
-  return data;
-};
+  // Get all posts
+  findAll(data = posts) {
+    return data;
+  },
 
-// Get post by ID
-export const getSinglePostById = (id, data = posts) => {
-  const parsedId = Number(id);
-  return data.find((post) => post.id === parsedId);
-};
+  // Get post by ID
+  findById(id, data = posts) {
+    const parsedId = Number(id);
 
-// Filter by tag
-export const getPostsByTag = (tag, data = posts) => {
-  return data.filter((post) =>
-    post.tags.some((t) => t.toLowerCase() === tag.toLowerCase()),
-  );
-};
+    return data.find((post) => post.id === parsedId);
+  },
 
-// Search by title or content
-export const searchPosts = (query, data = posts) => {
-  const lowerQuery = query.toLowerCase();
-  return data.filter(
-    (post) =>
-      post.title.toLowerCase().includes(lowerQuery) ||
-      post.content.toLowerCase().includes(lowerQuery),
-  );
-};
+  // Filter by tag
+  filterByTag(tag, data = posts) {
+    return data.filter((post) =>
+      post.tags.some((t) => t.toLowerCase() === tag.toLowerCase()),
+    );
+  },
 
-// Sort by title
-export const sortPostsByTitle = (order = 'asc', data = posts) => {
-  return data.toSorted((a, b) => {
-    if (order === 'asc') {
-      return a.title.localeCompare(b.title);
-    } else {
-      return b.title.localeCompare(a.title);
-    }
-  });
-};
+  // Search by title or content
+  search(query, data = posts) {
+    const lowerQuery = query.toLowerCase();
 
-// Sort by id
-export const sortPostsById = (order = 'asc', data = posts) => {
-  return data.toSorted((a, b) => {
-    if (order === 'asc') {
-      return a.id - b.id;
-    } else {
-      return b.id - a.id;
-    }
-  });
+    return data.filter(
+      (post) =>
+        post.title.toLowerCase().includes(lowerQuery) ||
+        post.content.toLowerCase().includes(lowerQuery),
+    );
+  },
+
+  // Sort by title
+  sortByTitle(order = 'asc', data = posts) {
+    return data.toSorted((a, b) => {
+      if (order === 'asc') {
+        return a.title.localeCompare(b.title);
+      } else {
+        return b.title.localeCompare(a.title);
+      }
+    });
+  },
+
+  // Sort by ID
+  sortById(order = 'asc', data = posts) {
+    return data.toSorted((a, b) => {
+      if (order === 'asc') {
+        return a.id - b.id;
+      } else {
+        return b.id - a.id;
+      }
+    });
+  },
 };
